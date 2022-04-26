@@ -1,0 +1,785 @@
+{
+	"info": {
+		"_postman_id": "de3d866d-96ff-4ccd-bfeb-640a01b8ed0c",
+		"name": "Flinks API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "GenerateAuthorizeToken",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "flinks-auth-key",
+								"value": ""
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {}
+						},
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/GenerateAuthorizeToken",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"GenerateAuthorizeToken"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Authorize",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"RequestId\", jsonData.RequestId);",
+									"postman.setEnvironmentVariable(\"LoginId\", jsonData.Login.Id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"LoginId\": \"63264d81-949e-4b64-329e-08da078ef0bd\",\n        \"MostRecentCached\": true\n}"
+						},
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/Authorize",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"Authorize"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Aggregation",
+			"item": [
+				{
+					"name": "GetAccountsDetail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"RequestId\", jsonData.RequestId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"RequestId\":\"{{RequestId}}\"\n}"
+						},
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/GetAccountsDetail",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"GetAccountsDetail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAccountsDetailAsync",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"RequestId\", jsonData.RequestId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"RequestId\":\"{{RequestId}}\"\n}"
+						},
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/GetAccountsDetailAsync/{{RequestId}}",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"GetAccountsDetailAsync",
+								"{{RequestId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAccountsSummary",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"RequestId\", jsonData.RequestId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"RequestId\":\"{{RequestId}}\"\n}"
+						},
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/GetAccountsSummary",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"GetAccountsSummary"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Institutions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/Institutions?skip=0&take=10&countries=CA&routingNumbers=322271627",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"Institutions"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "take",
+									"value": "10"
+								},
+								{
+									"key": "countries",
+									"value": "CA"
+								},
+								{
+									"key": "routingNumbers",
+									"value": "322271627"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RoutingNumber",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/Institutions/RoutingNumber/:routingNumber",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"Institutions",
+								"RoutingNumber",
+								":routingNumber"
+							],
+							"variable": [
+								{
+									"key": "routingNumber",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SetScheduleRefresh",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"LoginId\"         : \"{{LoginId}}\",\n\t\"IsActivated\"     : true\n}"
+						},
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/SetScheduledRefresh",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"SetScheduledRefresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetStatements",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"RequestId\"           : \"{{RequestId}}\",\n    \"NumberOfStatements\"  : \"MostRecent\",\n    \"AccountsFilter\"      : [\"{{accountId}}\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/GetStatements",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"GetStatements"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteCard",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"RequestId\", jsonData.RequestId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/DeleteCard/:loginId",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"DeleteCard",
+								":loginId"
+							],
+							"variable": [
+								{
+									"key": "loginId",
+									"value": "login_id"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetNightlyRefreshStatus",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {API_Secret}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/GetNightlyRefreshStatus",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"GetNightlyRefreshStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "AnswerMFAQuestions",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"LoginId\"   : \"{{LoginId}}\",\n        \"Questions\" : [\n           {\n              \"Question\": \"What is the best country on earth?\",\n              \"Answer\": \"Canada\"\n           },\n           {\n              \"Question\": \"What shape do people like most?\",\n              \"Answer\": \"Triangle\"\n           }\n        ]\n      }"
+						},
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/AnswerMFAQuestions",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"AnswerMFAQuestions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetMFAQuestions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/GetMFAQuestions/:loginId",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"GetMFAQuestions",
+								":loginId"
+							],
+							"variable": [
+								{
+									"key": "loginId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Attributes",
+			"item": [
+				{
+					"name": "All Attributes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/insight/login/{{LoginId}}/attributes/{{RequestId}}/GetIncomeAttributes",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"insight",
+								"login",
+								"{{LoginId}}",
+								"attributes",
+								"{{RequestId}}",
+								"GetIncomeAttributes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetIncomeAttributes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/insight/login/{{LoginId}}/attributes/{{RequestId}}/GetIncomeAttributes",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"insight",
+								"login",
+								"{{LoginId}}",
+								"attributes",
+								"{{RequestId}}",
+								"GetIncomeAttributes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Attributes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"RequestId\", jsonData.RequestId);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"MostRecentCached\": true\n}"
+						},
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/insight/login/{{LoginId}}/attributes/{{RequestId}}",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"insight",
+								"login",
+								"{{LoginId}}",
+								"attributes",
+								"{{RequestId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UserAnalysisAttributes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/insight/login/{{LoginId}}/attributes/{{RequestId}}/GetUserAnalysisAttributes",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"insight",
+								"login",
+								"{{LoginId}}",
+								"attributes",
+								"{{RequestId}}",
+								"GetUserAnalysisAttributes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetCreditRiskAttributes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/insight/login/{{LoginId}}/attributes/{{RequestId}}/GetCreditRiskAttributes",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"insight",
+								"login",
+								"{{LoginId}}",
+								"attributes",
+								"{{RequestId}}",
+								"GetCreditRiskAttributes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Investment",
+			"item": [
+				{
+					"name": "Investment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"LoginId\":\"{{LoginId}}\",\n    \"RequestId\":\"{{RequestId}}\",\n    \"MostRecentCached\":true\n}"
+						},
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/Investments",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"Investments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetWealthNightlyRefreshStatus",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {API_Secret}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/GetWealthNightlyRefreshStatus",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"GetWealthNightlyRefreshStatus"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteData",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://{{instance}}-api.private.fin.ag/v3/{{customerId}}/BankingServices/DeleteData/{{LoginId}}",
+							"protocol": "https",
+							"host": [
+								"{{instance}}-api",
+								"private",
+								"fin",
+								"ag"
+							],
+							"path": [
+								"v3",
+								"{{customerId}}",
+								"BankingServices",
+								"DeleteData",
+								"{{LoginId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
