@@ -11,7 +11,7 @@
 				{
 					"name": "GenerateAuthorizeToken",
 					"request": {
-						"method": "POST",
+						"method": "PATCH",
 						"header": [
 							{
 								"key": "flinks-auth-key",
